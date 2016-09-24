@@ -9,7 +9,7 @@ var number_id;
 $(document).ready(function () {
     $('#start_btn').click(function () {
         $.ajax({
-            type: "post",
+            type: "get",
             url: "startguess/",
             data: {},
             success: function(returnValue){

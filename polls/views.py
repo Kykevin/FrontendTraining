@@ -101,7 +101,7 @@ def training(request):
 
 @csrf_exempt
 def startguess(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         Number.objects.all().delete()
         newNumber = Number.objects.create()
         return HttpResponse(json.dumps([newNumber.id, random.randrange(newNumber.min, newNumber.max)]))

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>training page</title>
     <link rel="stylesheet" type="text/css" href="../../static/polls/training.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/polls/training.js"></script>
 </head>
 <body>
 <div>
@@ -12,10 +14,12 @@
     <br>
     <h3 class="red">Instruction:</h3>
     <p class="red">Think about a integer from 1 to 100. Then click 'guess' </p>
-    <button class="custom_btn" id="start_btn">Guess</button>
+    <button class="custom_btn start_btn_grp" id="start_btn">Guess</button>
     <br>
-    <button class="custom_btn" id="number_big_btn" hidden>Too big</button>
-    <button class="custom_btn" id="number_small_btn" hidden>Too small</button>
+    <p></p>
+    <br>
+    <button class="custom_btn playing_btn_grp" id="number_big_btn" hidden>Too big</button>
+    <button class="custom_btn playing_btn_grp" id="number_small_btn" hidden>Too small</button>
 </div>
 <br>
 <br>

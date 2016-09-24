@@ -1,0 +1,19 @@
+h1 {
+    font-size: 60px;
+}
+
+h3 {
+    font-size: 40px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.red {
+    color: #800000;
+}
+
+.custom_btn{
+    font-size: 20px;
+}

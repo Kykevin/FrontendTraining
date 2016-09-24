@@ -26,3 +26,10 @@ class Choice(models.Model):
 
     def __unicode__(self):  # __unicode__ on Python 2
         return self.choice_text
+
+class Number(models.Model):
+    min = models.IntegerField(default=1)
+    max = models.IntegerField(default=100)
+
+    def __unicode__(self):
+        return 'Min:' + str(self.min) + '\nMax:' + str(self.max)

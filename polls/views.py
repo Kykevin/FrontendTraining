@@ -38,12 +38,17 @@
 #         # user hits the Back button.
 #         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 #
-from django.shortcuts import get_object_or_404, render
+
+import json
+import random
+
+from django.shortcuts import get_object_or_404, render, Http404, HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.utils import timezone
-
+from polls.models import *
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Choice, Question
 
@@ -93,3 +98,32 @@ def vote(request, question_id):
 
 def training(request):
     return render(request, 'polls/training.html')
+
+@csrf_exempt
+def startguess(request):
+    if request.method == 'POST':
+        Number.objects.all().delete()
+        newNumber = Number.objects.create()
+        return HttpResponse(json.dumps([newNumber.id, random.randrange(newNumber.min, newNumber.max)]))
+    else:
+        return Http404('')
+
+@csrf_exempt
+def guess(request):
+    if request.method == 'POST':
+        number = Number.objects.get(id=request.POST.get('number_id'))
+        last_number = int(request.POST.get('last_number'))
+        if request.POST.get('response') == 'big':
+            number.max = last_number - 1
+        else:
+            number.min = last_number + 1
+        if number.max < number.min:
+            return HttpResponse(json.dumps(['bad']))
+        number.save()
+        #print number
+        if number.max == number.min:
+            return HttpResponse(json.dumps([number.min]))
+        else:
+            return HttpResponse(json.dumps([random.randrange(number.min, number.max)]))
+    else:
+        return Http404('')

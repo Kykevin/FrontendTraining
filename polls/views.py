@@ -44,6 +44,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.utils import timezone
 
+
 from .models import Choice, Question
 
 
@@ -89,3 +90,6 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+
+def training(request):
+    return render(request, 'polls/training.html')
